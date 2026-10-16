@@ -13,7 +13,15 @@ export default function AdminStep({ data, setData, errors }) {
                 o domínio, a versão e um identificador aleatório da instalação para contabilizar
                 instalações e seus responsáveis. Envia também um sinal técnico a cada 5 minutos para indicar disponibilidade. Não envia senha, contatos ou mensagens.
                 O registro é enviado para telemetria.creasy.com.br e não tem opção de desativação
-                na interface. Consulte o documento PRIVACIDADE.md incluído no pacote.
+                na interface. Consulte o documento PRIVACIDADE.md incluído no pacote.{' '}
+                <a
+                    href="https://github.com/creasycomunidade/creasy-crm-community/blob/main/docs/REMOVER-TELEMETRIA.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium underline underline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                >
+                    Passo a passo para remover a telemetria (abre em nova aba)
+                </a>
             </div>
             <Input
                 label="Nome completo"

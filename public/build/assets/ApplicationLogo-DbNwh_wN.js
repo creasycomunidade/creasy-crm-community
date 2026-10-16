@@ -1,0 +1,1 @@
+import{u as l,j as u}from"./app-QrA90UQm.js";function g({className:r,style:n,alt:i}){var t;let o=null;try{o=((t=l().props.branding)==null?void 0:t.logo_url)??null}catch{o=null}return o?u.jsx("img",{src:o,alt:i??"App Logo",className:r,style:n}):u.jsx("img",{src:"/creasy-community-icon.svg",alt:i??"CREASY CRM Comunidade",className:r,style:n})}export{g as A};
