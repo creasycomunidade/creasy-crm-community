@@ -1,0 +1,252 @@
+<?php
+
+namespace Dedoc\Scramble;
+
+use Closure;
+use Dedoc\Scramble\Configuration\DocumentTransformers;
+use Dedoc\Scramble\Configuration\JsonApiConfig;
+use Dedoc\Scramble\Configuration\OperationTransformers;
+use Dedoc\Scramble\Configuration\ParametersExtractors;
+use Dedoc\Scramble\Configuration\RuleTransformers;
+use Dedoc\Scramble\Configuration\ServerVariables;
+use Dedoc\Scramble\Contracts\AllRulesSchemasTransformer;
+use Dedoc\Scramble\Contracts\RuleTransformer;
+use Dedoc\Scramble\Enums\JsonApiArraySerialization;
+use Dedoc\Scramble\Support\Generator\ServerVariable;
+use Illuminate\Routing\Route;
+use Illuminate\Routing\Router;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use ReflectionFunction;
+use ReflectionNamedType;
+
+class GeneratorConfig
+{
+    /**
+     * @var (Closure(Router, mixed): Route)|string|null
+     */
+    public Closure|string|null $uiRoute = null;
+
+    /**
+     * @var (Closure(Router, mixed): Route)|string|null
+     */
+    public Closure|string|null $documentRoute = null;
+
+    /**
+     * @var Closure(Route): (string|string[])
+     */
+    public Closure $operationMethodsResolver;
+
+    public function __construct(
+        private array $config = [],
+        private ?Closure $routeResolver = null,
+        public readonly ParametersExtractors $parametersExtractors = new ParametersExtractors,
+        public readonly OperationTransformers $operationTransformers = new OperationTransformers,
+        public readonly DocumentTransformers $documentTransformers = new DocumentTransformers,
+        public readonly RuleTransformers $ruleTransformers = new RuleTransformers,
+        public readonly ServerVariables $serverVariables = new ServerVariables,
+        ?Closure $operationMethodsResolver = null,
+        public JsonApiConfig $jsonApi = new JsonApiConfig,
+    ) {
+        $this->operationMethodsResolver = $operationMethodsResolver ?: fn (Route $r) => $r->methods()[0];
+    }
+
+    public function config(array $config)
+    {
+        $this->config = $config;
+
+        return $this;
+    }
+
+    public function routes(?Closure $routeResolver = null)
+    {
+        if (count(func_get_args()) === 0) {
+            return $this->routeResolver ?: $this->defaultRoutesFilter(...);
+        }
+
+        if ($routeResolver) {
+            $this->routeResolver = $routeResolver;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param  (Closure(Router, mixed): Route)|string|false  $ui
+     * @param  (Closure(Router, mixed): Route)|string|false  $document
+     */
+    public function expose(Closure|string|false $ui = false, Closure|string|false $document = false): static
+    {
+        if (count(func_get_args()) === 1 && isset(func_get_args()[0]) && func_get_args()[0] === false) {
+            $this->uiRoute = null;
+            $this->documentRoute = null;
+
+            return $this;
+        }
+
+        $this->uiRoute = $ui ?: null;
+        $this->documentRoute = $document ?: null;
+
+        return $this;
+    }
+
+    private function defaultRoutesFilter(Route $route)
+    {
+        $expectedDomain = $this->get('api_domain');
+
+        $isBaseMatching = ! ($prefix = $this->get('api_path', 'api')) || Str::startsWith($route->uri, $prefix);
+
+        return $isBaseMatching
+            && (! $expectedDomain || $route->getDomain() === $expectedDomain);
+    }
+
+    public function afterOpenApiGenerated(?callable $afterOpenApiGenerated = null)
+    {
+        if (count(func_get_args()) === 0) {
+            return $this->documentTransformers->all();
+        }
+
+        if ($afterOpenApiGenerated) {
+            $this->documentTransformers->append($afterOpenApiGenerated);
+        }
+
+        return $this;
+    }
+
+    public function useConfig(array $config): static
+    {
+        $this->config = $config;
+
+        return $this;
+    }
+
+    public function withParametersExtractors(callable $callback): static
+    {
+        $callback($this->parametersExtractors);
+
+        return $this;
+    }
+
+    public function withOperationTransformers(array|string|callable $cb): static
+    {
+        if ($this->isOperationTransformerMapper($cb)) {
+            $cb($this->operationTransformers);
+
+            return $this;
+        }
+
+        $this->operationTransformers->append($cb);
+
+        return $this;
+    }
+
+    /**
+     * @param  list<class-string<RuleTransformer|AllRulesSchemasTransformer>>|class-string<RuleTransformer|AllRulesSchemasTransformer>|(callable(RuleTransformers): void)  $cb
+     */
+    public function withRuleTransformers(array|string|callable $cb): self
+    {
+        if (is_callable($cb)) {
+            $cb($this->ruleTransformers);
+
+            return $this;
+        }
+
+        $this->ruleTransformers->append($cb);
+
+        return $this;
+    }
+
+    private function isOperationTransformerMapper($cb): bool
+    {
+        if (! $cb instanceof Closure) {
+            return false;
+        }
+
+        $reflection = new ReflectionFunction($cb);
+
+        return count($reflection->getParameters()) === 1
+            && $reflection->getParameters()[0]->getType() instanceof ReflectionNamedType
+            && is_a($reflection->getParameters()[0]->getType()->getName(), OperationTransformers::class, true);
+    }
+
+    public function withDocumentTransformers(array|string|callable $cb): static
+    {
+        if ($this->isDocumentTransformerMapper($cb)) {
+            $cb($this->documentTransformers);
+
+            return $this;
+        }
+
+        $this->documentTransformers->append($cb);
+
+        return $this;
+    }
+
+    private function isDocumentTransformerMapper($cb): bool
+    {
+        if (! $cb instanceof Closure) {
+            return false;
+        }
+
+        $reflection = new ReflectionFunction($cb);
+
+        return count($reflection->getParameters()) === 1
+            && $reflection->getParameters()[0]->getType() instanceof ReflectionNamedType
+            && is_a($reflection->getParameters()[0]->getType()->getName(), DocumentTransformers::class, true);
+    }
+
+    /**
+     * @param  (callable(ServerVariables): void)|array<string, ServerVariable>  $variables
+     */
+    public function withServerVariables(callable|array $variables)
+    {
+        if (is_callable($variables)) {
+            $variables($this->serverVariables);
+
+            return $this;
+        }
+
+        $this->serverVariables->use($variables);
+
+        return $this;
+    }
+
+    /**
+     * Force Scramble to use `PATCH` for `PUT|PATCH` routes.
+     */
+    public function preferPatchMethod(): static
+    {
+        return $this->resolveOperationMethodsUsing(function (Route $route): string {
+            $methods = array_map('strtolower', $route->methods());
+
+            return in_array('patch', $methods) && in_array('put', $methods) ? 'patch' : $methods[0];
+        });
+    }
+
+    /**
+     * @param  Closure(Route): (string|string[])  $resolver
+     */
+    public function resolveOperationMethodsUsing(Closure $resolver): static
+    {
+        $this->operationMethodsResolver = $resolver;
+
+        return $this;
+    }
+
+    public function jsonApi(
+        JsonApiArraySerialization $arraySerialization = JsonApiArraySerialization::Comma,
+        ?int $maxRelationshipDepth = null,
+    ): static {
+        $this->jsonApi = new JsonApiConfig(
+            arraySerialization: $arraySerialization,
+            maxRelationshipDepth: $maxRelationshipDepth,
+        );
+
+        return $this;
+    }
+
+    public function get(string $key, mixed $default = null)
+    {
+        return Arr::get($this->config, $key, $default);
+    }
+}

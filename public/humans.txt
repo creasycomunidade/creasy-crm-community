@@ -1,0 +1,5 @@
+CREASY CRM
+Desenvolvimento e manutenção: CREASY Tecnologias e Soluções
+Site: https://creasy.com.br
+
+A plataforma utiliza componentes de terceiros com suas respectivas licenças e autorias.

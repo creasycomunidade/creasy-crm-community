@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth theme transition */
+html {
+    transition: background-color 200ms ease, color 200ms ease;
+    max-width: 100%;
+    overflow-x: clip;
+}
+html.dark {
+    color-scheme: dark;
+}
+
+/* When the Bangla locale is active, render the whole UI in Anek Bangla.
+   Space Grotesk has no Bengali glyphs, so without this Bangla text falls back
+   to an arbitrary system font. lang="bn" is set on <html> by both the Blade
+   layout (initial load) and applyLocaleToDocument() (client-side switch).
+   The .font-sans override is needed because Tailwind's utility sets
+   font-family directly on elements (e.g. <body>), which would otherwise win
+   over inheritance from <html>. */
+html[lang="bn"],
+html[lang="bn"] .font-sans {
+    font-family: 'Anek Bangla', 'Space Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+body {
+    @apply bg-surface dark:bg-neutral-900 text-gray-900 dark:text-neutral-100;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: clip;
+    background-image:
+        radial-gradient(circle at 8% -10%, rgb(253 186 116 / 0.20), transparent 32rem),
+        radial-gradient(circle at 92% 0%, rgb(255 122 0 / 0.08), transparent 28rem);
+    background-attachment: fixed;
+}
+
+#app {
+    min-width: 0;
+    max-width: 100%;
+}
+
+/* Mobile resilience shared by every module. Wide data structures must scroll
+   inside their own region and never enlarge the page viewport. */
+.overflow-x-auto {
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 639px) {
+    input,
+    select,
+    textarea,
+    button {
+        max-width: 100%;
+    }
+
+    /* Prevent iOS from zooming the whole interface when focusing a field. */
+    input:not([type="checkbox"]):not([type="radio"]),
+    select,
+    textarea {
+        font-size: 16px;
+    }
+}
+.dark body {
+    background-color: #0c0a09;
+    background-image:
+        radial-gradient(circle at 8% -10%, rgb(255 122 0 / 0.18), transparent 34rem),
+        radial-gradient(circle at 94% 4%, rgb(253 186 116 / 0.07), transparent 30rem);
+}
+
+::selection {
+    background: rgb(253 186 116 / 0.65);
+    color: #1c1917;
+}
+
+:focus-visible {
+    outline-color: #c45100;
+}
+
+@layer components {
+    .card {
+        @apply bg-white/95 dark:bg-neutral-900/95 border border-brand-100/80 dark:border-brand-900/35 rounded-xl shadow-soft dark:shadow-none backdrop-blur-sm;
+    }
+    .sidebar {
+        background: linear-gradient(180deg, #1c1917 0%, #0c0a09 100%);
+    }
+    .topbar {
+        @apply bg-white/80 dark:bg-neutral-900/80 backdrop-blur-xl border-brand-100/70 dark:border-brand-900/30;
+    }
+
+    /* Sidebar / panels: Windows often shows a light classic scrollbar in dark UI */
+    .dark .scrollbar-themed-dark {
+        scrollbar-width: thin;
+        scrollbar-color: theme('colors.neutral.600') theme('colors.neutral.950');
+    }
+    .dark .scrollbar-themed-dark::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    .dark .scrollbar-themed-dark::-webkit-scrollbar-track {
+        background: theme('colors.neutral.950');
+    }
+    .dark .scrollbar-themed-dark::-webkit-scrollbar-thumb {
+        background: theme('colors.neutral.600');
+        border-radius: 4px;
+    }
+    .dark .scrollbar-themed-dark::-webkit-scrollbar-thumb:hover {
+        background: theme('colors.neutral.500');
+    }
+
+    /* Dark mode: ensure all form controls have visible text and background */
+    .dark input:not([type="checkbox"]):not([type="radio"]),
+    .dark select,
+    .dark textarea {
+        @apply bg-neutral-800 border-neutral-600 text-neutral-100 placeholder-neutral-500;
+    }
+    .dark input:focus,
+    .dark select:focus,
+    .dark textarea:focus {
+        @apply border-brand-500 ring-brand-500/20;
+    }
+}
+
+/* Dark mode: checkbox/radio accent for visibility */
+.dark input[type="checkbox"],
+.dark input[type="radio"] {
+    @apply accent-brand-500;
+}
+
+/* Sidebar dark scrollbar */
+.scrollbar-thin {
+    scrollbar-width: thin;
+}
+.scrollbar-track-transparent {
+    scrollbar-color: rgba(255,255,255,0.08) transparent;
+}
+.scrollbar-thumb-white\/10::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,0.10);
+    border-radius: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar { width: 4px; }
+.scrollbar-track-transparent::-webkit-scrollbar-track { background: transparent; }
+
+/* Sidebar hover utility */
+.hover\:bg-white\/8:hover { background-color: rgba(255,255,255,0.08); }
+.border-white\/8 { border-color: rgba(255,255,255,0.08); }
+
+/* ─── AI buttons: animated gradient border + glow ───────────────────────────
+   Add the `ai-glow` class to any AI-related button (e.g. "Generate with AI").
+   It keeps the button's own background and layers a rotating gradient ring on
+   the edge plus a soft animated halo behind it. Works on solid / outline /
+   brand / purple variants of any size. The `@property` makes the conic-gradient
+   angle animatable for a smooth spin (Chrome/Edge/Safari 16.4+/Firefox 128+);
+   where unsupported it gracefully shows a static gradient ring + glow. */
+@property --ai-glow-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes ai-glow-spin {
+    to { --ai-glow-angle: 360deg; }
+}
+
+.ai-glow {
+    position: relative;
+    isolation: isolate;
+    /* Glow lives in box-shadow so it stays OUTSIDE the button — it never
+       washes the button face or bleeds through transparent/outline buttons. */
+    animation: ai-glow-pulse 3.5s ease-in-out infinite;
+}
+
+/* Rotating gradient border ring (masked so only the ~1.5px edge shows, and
+   kept above the face so the moving colors read clearly on any background). */
+.ai-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    padding: 1.5px;
+    border-radius: inherit;
+    background: conic-gradient(from var(--ai-glow-angle),
+        #a855f7, #6366f1, #22d3ee, #ec4899, #a855f7);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    animation: ai-glow-spin 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes ai-glow-pulse {
+    0%, 100% { box-shadow: 0 0 7px 0 rgba(168, 85, 247, 0.45), 0 0 15px 0 rgba(99, 102, 241, 0.28); }
+    50%      { box-shadow: 0 0 11px 1px rgba(34, 211, 238, 0.50), 0 0 20px 1px rgba(236, 72, 153, 0.32); }
+}
+
+/* Livelier glow on hover */
+.ai-glow:hover {
+    animation-duration: 1.8s;
+}
+
+/* Disabled: calm the effect so it doesn't look interactive */
+.ai-glow:disabled,
+.ai-glow[disabled] {
+    cursor: not-allowed;
+    animation: none;
+    box-shadow: none;
+}
+.ai-glow:disabled::before,
+.ai-glow[disabled]::before {
+    animation-play-state: paused;
+    opacity: 0.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ai-glow {
+        animation: none;
+        box-shadow: 0 0 8px 0 rgba(99, 102, 241, 0.35);
+    }
+    .ai-glow::before {
+        animation: none;
+    }
+}
+
+/* RTL: logical spacing where needed (Tailwind rtl: variant used in components) */
+[dir="rtl"] .text-left {
+    text-align: right;
+}
+[dir="rtl"] .text-right {
+    text-align: left;
+}
+/* Keep numbers/codes LTR in RTL layout */
+[dir="rtl"] .ltr-inline {
+    direction: ltr;
+    unicode-bidi: embed;
+}

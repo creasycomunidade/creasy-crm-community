@@ -1,0 +1,26 @@
+{
+  "name": "CREASY CRM Comunidade",
+  "updated": "2026-10-13",
+  "palette": {
+    "primary": "#ff7a00",
+    "interactive": "#c45100",
+    "graphite": "#1c1917",
+    "surface": "#fffaf5"
+  },
+  "scales": {
+    "brand": {
+      "50": "#fff7ed",
+      "100": "#ffedd5",
+      "200": "#fed7aa",
+      "300": "#fdba74",
+      "400": "#fb923c",
+      "500": "#ff7a00",
+      "600": "#c45100",
+      "700": "#a84300",
+      "800": "#873700",
+      "900": "#6f2f00",
+      "950": "#351900"
+    }
+  },
+  "developer": "CREASY Tecnologias e Soluções"
+}

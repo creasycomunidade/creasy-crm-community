@@ -1,0 +1,23 @@
+Options -Indexes
+
+<IfModule mod_authz_core.c>
+    <FilesMatch "(^\.|composer\.(json|lock)$|package(-lock)?\.json$|phpunit\.xml$|artisan$)">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # A production vhost should point directly to /public. This fallback keeps
+    # source, environment, logs and dependencies unreachable if it points here.
+    RewriteRule ^public/ - [L]
+    # Inbound message media uses predictable message IDs and must only be
+    # served through the authenticated conversation media controller.
+    RewriteRule ^storage/message-media/(?:[0-9]+\.[A-Za-z0-9]+|evolution-go/) - [F,L,NC]
+    # Expose only Laravel's public storage link. Without this exception the
+    # generic source-directory guard below blocks media with a 403 response.
+    RewriteRule ^storage/(.*)$ public/storage/$1 [L]
+    RewriteRule ^(?:app|bootstrap|config|database|docker|resources|routes|storage|tests|vendor)(?:/|$) - [F,L,NC]
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

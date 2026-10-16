@@ -1,0 +1,445 @@
+{
+  "send_instagram": {
+    "label": "Enviar Instagram Direct",
+    "category": "send",
+    "help": "Envia na conversa existente da conta selecionada. O contato precisa ter iniciado a conversa.",
+    "fields": [
+      {
+        "key": "body",
+        "label": "Mensagem",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "key": "channel_account_id",
+        "label": "Conta de envio",
+        "type": "resource",
+        "resource": "channel_accounts",
+        "channel": "instagram"
+      }
+    ]
+  },
+  "send_messenger": {
+    "label": "Enviar Messenger",
+    "category": "send",
+    "help": "Envia na conversa existente da conta selecionada. O contato precisa ter iniciado a conversa.",
+    "fields": [
+      {
+        "key": "body",
+        "label": "Mensagem",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "key": "channel_account_id",
+        "label": "Conta de envio",
+        "type": "resource",
+        "resource": "channel_accounts",
+        "channel": "messenger"
+      }
+    ]
+  },
+  "send_telegram": {
+    "label": "Enviar Telegram",
+    "category": "send",
+    "help": "Envia na conversa existente da conta selecionada. O contato precisa ter iniciado a conversa.",
+    "fields": [
+      {
+        "key": "body",
+        "label": "Mensagem",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "key": "channel_account_id",
+        "label": "Conta de envio",
+        "type": "resource",
+        "resource": "channel_accounts",
+        "channel": "telegram"
+      }
+    ]
+  },
+  "set_variable": {
+    "label": "Definir variável",
+    "category": "logic",
+    "help": "Salva um valor para usar em {{context.nome}}. Aceita outras variáveis no valor.",
+    "fields": [
+      {
+        "key": "variable",
+        "label": "Salvar na variável",
+        "type": "text",
+        "default": "resultado",
+        "required": true
+      },
+      {
+        "key": "value",
+        "label": "Valor",
+        "type": "textarea"
+      }
+    ]
+  },
+  "random_split": {
+    "label": "Divisão A/B",
+    "category": "logic",
+    "help": "Distribui as execuções entre as saídas Sim (A) e Não (B).",
+    "fields": [
+      {
+        "key": "percentage",
+        "label": "Porcentagem para A",
+        "type": "number",
+        "default": 50,
+        "min": 0,
+        "max": 100
+      }
+    ]
+  },
+  "stop_flow": {
+    "label": "Encerrar fluxo",
+    "category": "logic",
+    "help": "Encerra a execução neste ponto, mesmo que haja outro nó conectado.",
+    "fields": []
+  },
+  "input_email": {
+    "label": "Solicitar e-mail",
+    "category": "listen",
+    "help": "Envia uma pergunta na conversa de origem e aguarda uma resposta válida. Resposta inválida mantém a execução aguardando; opções são exibidas como texto.",
+    "fields": [
+      {
+        "key": "question",
+        "label": "Pergunta",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "key": "variable",
+        "label": "Salvar na variável",
+        "type": "text",
+        "default": "resultado",
+        "required": true
+      }
+    ]
+  },
+  "input_number": {
+    "label": "Solicitar número",
+    "category": "listen",
+    "help": "Envia uma pergunta na conversa de origem e aguarda uma resposta válida. Resposta inválida mantém a execução aguardando; opções são exibidas como texto.",
+    "fields": [
+      {
+        "key": "question",
+        "label": "Pergunta",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "key": "variable",
+        "label": "Salvar na variável",
+        "type": "text",
+        "default": "resultado",
+        "required": true
+      }
+    ]
+  },
+  "input_phone": {
+    "label": "Solicitar telefone",
+    "category": "listen",
+    "help": "Envia uma pergunta na conversa de origem e aguarda uma resposta válida. Resposta inválida mantém a execução aguardando; opções são exibidas como texto.",
+    "fields": [
+      {
+        "key": "question",
+        "label": "Pergunta",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "key": "variable",
+        "label": "Salvar na variável",
+        "type": "text",
+        "default": "resultado",
+        "required": true
+      }
+    ]
+  },
+  "input_url": {
+    "label": "Solicitar URL",
+    "category": "listen",
+    "help": "Envia uma pergunta na conversa de origem e aguarda uma resposta válida. Resposta inválida mantém a execução aguardando; opções são exibidas como texto.",
+    "fields": [
+      {
+        "key": "question",
+        "label": "Pergunta",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "key": "variable",
+        "label": "Salvar na variável",
+        "type": "text",
+        "default": "resultado",
+        "required": true
+      }
+    ]
+  },
+  "input_date": {
+    "label": "Solicitar data",
+    "category": "listen",
+    "help": "Envia uma pergunta na conversa de origem e aguarda uma resposta válida. Resposta inválida mantém a execução aguardando; opções são exibidas como texto.",
+    "fields": [
+      {
+        "key": "question",
+        "label": "Pergunta",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "key": "variable",
+        "label": "Salvar na variável",
+        "type": "text",
+        "default": "resultado",
+        "required": true
+      }
+    ]
+  },
+  "input_choice": {
+    "label": "Solicitar opção",
+    "category": "listen",
+    "help": "Envia uma pergunta na conversa de origem e aguarda uma resposta válida. Resposta inválida mantém a execução aguardando; opções são exibidas como texto.",
+    "fields": [
+      {
+        "key": "question",
+        "label": "Pergunta",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "key": "variable",
+        "label": "Salvar na variável",
+        "type": "text",
+        "default": "resultado",
+        "required": true
+      },
+      {
+        "key": "choices",
+        "label": "Opções (uma por linha)",
+        "type": "textarea",
+        "required": true
+      }
+    ]
+  },
+  "ai_generate": {
+    "label": "Gerar texto com IA",
+    "category": "ai",
+    "help": "Gera texto e salva na variável sem enviar. Usa o provedor de IA configurado no espaço de trabalho.",
+    "fields": [
+      {
+        "key": "prompt",
+        "label": "Instrução",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "key": "variable",
+        "label": "Salvar na variável",
+        "type": "text",
+        "default": "resultado",
+        "required": true
+      }
+    ]
+  },
+  "knowledge_answer": {
+    "label": "Consultar chatbot / conhecimento",
+    "category": "ai",
+    "help": "Consulta o chatbot e sua base de conhecimento. Salva a resposta; não envia automaticamente.",
+    "fields": [
+      {
+        "key": "chatbot_id",
+        "label": "Chatbot",
+        "type": "resource",
+        "resource": "chatbots",
+        "required": true
+      },
+      {
+        "key": "prompt",
+        "label": "Pergunta",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "key": "variable",
+        "label": "Salvar na variável",
+        "type": "text",
+        "default": "resultado",
+        "required": true
+      }
+    ]
+  },
+  "create_task": {
+    "label": "Criar tarefa",
+    "category": "crm",
+    "help": "Cria uma tarefa no quadro e coluna selecionados.",
+    "fields": [
+      {
+        "key": "column_id",
+        "label": "Coluna de tarefas",
+        "type": "resource",
+        "resource": "task_columns",
+        "required": true
+      },
+      {
+        "key": "title",
+        "label": "Título",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "description",
+        "label": "Descrição",
+        "type": "textarea"
+      },
+      {
+        "key": "assigned_user_id",
+        "label": "Responsável",
+        "type": "resource",
+        "resource": "agents"
+      }
+    ]
+  },
+  "create_deal": {
+    "label": "Criar oportunidade",
+    "category": "crm",
+    "help": "Cria uma oportunidade vinculada ao contato no funil selecionado.",
+    "fields": [
+      {
+        "key": "stage_id",
+        "label": "Etapa do funil",
+        "type": "resource",
+        "resource": "pipeline_stages",
+        "required": true
+      },
+      {
+        "key": "title",
+        "label": "Título",
+        "type": "text",
+        "required": true
+      },
+      {
+        "key": "value",
+        "label": "Valor em reais",
+        "type": "number",
+        "default": 0,
+        "min": 0
+      }
+    ]
+  },
+  "move_deal": {
+    "label": "Mover oportunidade",
+    "category": "crm",
+    "help": "Move a oportunidade indicada para outra etapa do mesmo espaço de trabalho.",
+    "fields": [
+      {
+        "key": "deal_id",
+        "label": "ID da oportunidade",
+        "type": "text",
+        "default": "{{context.deal_id}}",
+        "required": true
+      },
+      {
+        "key": "stage_id",
+        "label": "Nova etapa",
+        "type": "resource",
+        "resource": "pipeline_stages",
+        "required": true
+      }
+    ]
+  },
+  "add_segment": {
+    "label": "Adicionar ao segmento",
+    "category": "contact",
+    "help": "Altera somente segmentos estáticos. Segmentos dinâmicos são calculados pelas regras.",
+    "fields": [
+      {
+        "key": "segment_id",
+        "label": "Segmento estático",
+        "type": "resource",
+        "resource": "segments",
+        "required": true
+      }
+    ]
+  },
+  "remove_segment": {
+    "label": "Remover do segmento",
+    "category": "contact",
+    "help": "Altera somente segmentos estáticos. Segmentos dinâmicos são calculados pelas regras.",
+    "fields": [
+      {
+        "key": "segment_id",
+        "label": "Segmento estático",
+        "type": "resource",
+        "resource": "segments",
+        "required": true
+      }
+    ]
+  },
+  "conversation_status": {
+    "label": "Alterar status da conversa",
+    "category": "contact",
+    "help": "Altera somente a conversa que iniciou o fluxo.",
+    "fields": [
+      {
+        "key": "status",
+        "label": "Status",
+        "type": "select",
+        "options": [
+          [
+            "open",
+            "Aberta"
+          ],
+          [
+            "resolved",
+            "Resolvida"
+          ]
+        ],
+        "default": "resolved"
+      }
+    ]
+  },
+  "input_time": {
+    "label": "Solicitar horário",
+    "category": "listen",
+    "help": "Aguarda uma resposta válida na conversa de origem. Horário: HH:MM; avaliação: inteiro entre 1 e 5.",
+    "fields": [
+      {
+        "key": "question",
+        "label": "Pergunta",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "key": "variable",
+        "label": "Salvar na variável",
+        "type": "text",
+        "default": "resposta",
+        "required": true
+      }
+    ]
+  },
+  "input_rating": {
+    "label": "Solicitar avaliação de 1 a 5",
+    "category": "listen",
+    "help": "Aguarda uma resposta válida na conversa de origem. Horário: HH:MM; avaliação: inteiro entre 1 e 5.",
+    "fields": [
+      {
+        "key": "question",
+        "label": "Pergunta",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "key": "variable",
+        "label": "Salvar na variável",
+        "type": "text",
+        "default": "resposta",
+        "required": true
+      }
+    ]
+  }
+}

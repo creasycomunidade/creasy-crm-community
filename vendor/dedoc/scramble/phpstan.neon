@@ -1,0 +1,17 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: 9
+    paths:
+        - src
+        - config
+    stubFiles:
+        - stubs/DeepCopy.stub
+    tmpDir: build/phpstan
+    checkOctaneCompatibility: true
+    checkModelProperties: true
+    typeAliases:
+        Rule: 'string|\Illuminate\Contracts\Validation\ValidationRule'
+        RuleSet: 'Rule|Rule[]'
+    #reportUnmatchedIgnoredErrors: false

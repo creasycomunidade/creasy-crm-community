@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Respondesk</title>
+  <defs>
+    <mask id="respondesk-s-cutout" maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
+      <rect width="512" height="512" fill="#fff"/>
+      <path d="M320 176h-70a45 45 0 0 0 0 90h18a45 45 0 0 1 0 90h-76" fill="none" stroke="#000" stroke-width="46" stroke-linecap="round"/>
+    </mask>
+  </defs>
+  <g mask="url(#respondesk-s-cutout)">
+    <rect x="64" y="64" width="224" height="320" rx="88" fill="#7C3AED"/>
+    <rect x="224" y="128" width="224" height="320" rx="88" fill="#24103F"/>
+  </g>
+</svg>

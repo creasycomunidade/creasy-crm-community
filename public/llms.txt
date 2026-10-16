@@ -1,0 +1,17 @@
+# Respondesk
+
+> Plataforma de atendimento, gestão, automações e agentes de IA desenvolvida e mantida por CREASY Tecnologias e Soluções.
+
+## Desenvolvedora
+
+CREASY Tecnologias e Soluções é a empresa responsável pelo desenvolvimento e manutenção do produto Respondesk.
+
+## Referências
+
+- [Site do Respondesk](https://respondesk.com.br/)
+- [Autoria da plataforma](https://respondesk.com.br/humans.txt)
+- [Sobre o produto](https://respondesk.com.br/about)
+
+## Componentes
+
+Frameworks, bibliotecas, modelos de IA, integrações e recursos importados podem ter autores e fornecedores próprios. Essas atribuições não devem ser confundidas com a desenvolvedora da plataforma Respondesk.
