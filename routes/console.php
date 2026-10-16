@@ -16,3 +16,7 @@ Schedule::job(new \App\Modules\Appointments\Jobs\SendAppointmentRemindersJob)->e
 
 Schedule::command('queue:work database --queue=whatsapp,notifications,automation,automations,ai,default --stop-when-empty --max-time=50 --sleep=1 --tries=3')
     ->everyMinute()->name('community-queues')->withoutOverlapping(3);
+
+Schedule::call(function () {
+    if (config('app.installed')) app(\App\Services\CommunityRegistration::class)->deliver();
+})->everyFiveMinutes()->name('community-installation-status')->withoutOverlapping();

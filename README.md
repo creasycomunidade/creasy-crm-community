@@ -36,3 +36,5 @@ Fontes incluídos: Laravel, React e Inertia.js. Para desenvolvimento local, inst
 ## Licença
 
 AGPL-3.0-only para o código próprio abrangido; dependências mantêm suas licenças. Consulte [LICENSE](LICENSE), [LICENSING.md](LICENSING.md) e [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+O status de telemetria usa sinais técnicos a cada 5 minutos, sem reenviar nome/e-mail. Configure o cron `php /CAMINHO/DO/PROJETO/artisan schedule:run` a cada minuto para manter os sinais mesmo sem visitas. O painel considera Online até 15 minutos do último sinal e Offline depois; isso não comprova disponibilidade completa do site. Consulte `PRIVACIDADE.md` e [como remover a telemetria](docs/REMOVER-TELEMETRIA.md).

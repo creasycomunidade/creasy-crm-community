@@ -181,13 +181,8 @@
     "client": {
         "profile": {
             "edit": "संपादित करें",
-            "2fa": {
-                "enable": "Enable",
-                "disable": "Disable"
-            },
-            "sessions": {
-                "destroy": "Destroy"
-            },
+            "2fa": "2Fa",
+            "sessions": "Sessions",
             "destroy": "Destroy",
             "update": "Update"
         },
@@ -352,10 +347,7 @@
             "index": "सूची",
             "store": "सहेजें",
             "destroy": "हटाएं",
-            "contacts": {
-                "attach": "Attach",
-                "detach": "Detach"
-            }
+            "contacts": "Contacts"
         },
         "whatsapp": {
             "templates": {
@@ -415,12 +407,7 @@
             "start": "शुरू करें",
             "templates": "टेम्पलेट",
             "assign": "सौंपें",
-            "setup": {
-                "operations": {
-                    "update": "Update"
-                },
-                "destroy": "Destroy"
-            },
+            "setup": "Setup",
             "webchat": {
                 "index": "Index",
                 "update": "Update",
@@ -600,7 +587,17 @@
                 "connect": "कनेक्ट करें"
             }
         },
-        "workspaces": "Workspaces",
+        "workspaces": {
+            "switch": "Switch",
+            "index": "Index",
+            "store": "Store",
+            "members": {
+                "store": "Store",
+                "destroy": "Destroy"
+            },
+            "update": "Update",
+            "destroy": "Destroy"
+        },
         "settings": {
             "update": "अपडेट करें",
             "notifications": "सूचनाएँ",
@@ -1069,34 +1066,31 @@
         "secret_key_hint": "सर्वर-साइड सीक्रेट की — इसे गोपनीय रखें",
         "stripe_webhook_hint": "Stripe डैशबोर्ड से Webhook साइनिंग सीक्रेट (whsec_…)",
         "webhook_hint": "इनकमिंग गेटवे इवेंट सत्यापित करने के लिए उपयोग होने वाला Webhook सीक्रेट",
-        "clients": "Clients",
+        "clients": {
+            "index": "Index",
+            "users": {
+                "index": "Index",
+                "store": "Store",
+                "update": "Update",
+                "destroy": "Destroy"
+            },
+            "impersonate": "Impersonate",
+            "destroy": "Destroy",
+            "export": "Export",
+            "store": "Store",
+            "update": "Update"
+        },
         "subscriptions": "Subscriptions",
         "payments": "Payments",
         "plans": "Plans",
-        "currencies": {
+        "currencies": "Currencies",
+        "admins": {
             "index": "Index",
-            "update": "Update",
-            "store": "Store"
+            "destroy": "Destroy",
+            "store": "Store",
+            "update": "Update"
         },
-        "admins": "Admins",
-        "settings": {
-            "index": "Index",
-            "general": {
-                "update": "Update"
-            },
-            "logo": {
-                "upload": "Upload",
-                "delete": "Delete"
-            },
-            "favicon": {
-                "upload": "Upload",
-                "delete": "Delete"
-            },
-            "update": "Update",
-            "firebase": {
-                "update": "Update"
-            }
-        },
+        "settings": "Settings",
         "ai": {
             "index": "इंडेक्स"
         },

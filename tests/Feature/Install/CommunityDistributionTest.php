@@ -79,4 +79,37 @@ class CommunityDistributionTest extends TestCase
         $this->assertArrayHasKey('pending', $state);
         $this->assertGreaterThan(time(), $state['next_attempt']);
     }
+
+    public function test_heartbeat_is_authenticated_throttled_and_does_not_repeat_personal_data(): void
+    {
+        Http::fake(['*' => Http::response(['ok' => true])]);
+        $service = app(CommunityRegistration::class);
+        $service->queue('Teste', 'admin@example.com', 'https://crm.example.com');
+        $service->deliver();
+        $path = storage_path('app/private/community-registration.json');
+        $state = json_decode(file_get_contents($path), true);
+        $this->assertStringNotContainsString('admin@example.com', file_get_contents($path));
+        $this->assertArrayHasKey('heartbeat_credentials', $state);
+        $service->deliver();
+        Http::assertSentCount(1);
+        $state['next_attempt'] = 0;
+        file_put_contents($path, json_encode($state));
+        $service->deliver();
+        Http::assertSentCount(2);
+        Http::assertSent(function ($request) {
+            if ($request->url() !== config('community.heartbeat_url')) return false;
+            $keys = array_keys($request->data()); sort($keys);
+            return $keys === ['installation_id', 'installation_secret'];
+        });
+        $service->deliver();
+        Http::assertSentCount(2);
+    }
+
+    public function test_legacy_receipt_does_not_send_unauthed_heartbeats(): void
+    {
+        Http::fake();
+        file_put_contents(storage_path('app/private/community-registration.json'), json_encode(['installation_id' => 'legacy', 'registered_at' => gmdate(DATE_ATOM)]));
+        app(CommunityRegistration::class)->deliver();
+        Http::assertNothingSent();
+    }
 }

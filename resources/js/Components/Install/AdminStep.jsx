@@ -11,7 +11,7 @@ export default function AdminStep({ data, setData, errors }) {
             <div className="rounded-lg border border-orange-200 bg-orange-50 p-3 text-sm text-neutral-800">
                 Ao concluir, esta edição registra na CREASY o nome e o e-mail deste administrador,
                 o domínio, a versão e um identificador aleatório da instalação para contabilizar
-                instalações e seus responsáveis. Não envia senha, contatos ou mensagens.
+                instalações e seus responsáveis. Envia também um sinal técnico a cada 5 minutos para indicar disponibilidade. Não envia senha, contatos ou mensagens.
                 O registro é enviado para telemetria.creasy.com.br e não tem opção de desativação
                 na interface. Consulte o documento PRIVACIDADE.md incluído no pacote.
             </div>

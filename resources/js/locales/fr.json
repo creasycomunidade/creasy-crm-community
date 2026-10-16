@@ -187,13 +187,8 @@
     "client": {
         "profile": {
             "edit": "Modifier",
-            "2fa": {
-                "enable": "Enable",
-                "disable": "Disable"
-            },
-            "sessions": {
-                "destroy": "Destroy"
-            },
+            "2fa": "2Fa",
+            "sessions": "Sessions",
             "destroy": "Destroy",
             "update": "Update"
         },
@@ -358,10 +353,7 @@
             "index": "Index",
             "store": "Enregistrer",
             "destroy": "Détruire",
-            "contacts": {
-                "attach": "Attach",
-                "detach": "Detach"
-            }
+            "contacts": "Contacts"
         },
         "whatsapp": {
             "templates": {
@@ -421,12 +413,7 @@
             "start": "Démarrer",
             "templates": "Modèles",
             "assign": "Attribuer",
-            "setup": {
-                "operations": {
-                    "update": "Update"
-                },
-                "destroy": "Destroy"
-            },
+            "setup": "Setup",
             "webchat": {
                 "index": "Index",
                 "update": "Update",
@@ -630,7 +617,17 @@
                 "connect": "Connecter"
             }
         },
-        "workspaces": "Workspaces",
+        "workspaces": {
+            "switch": "Switch",
+            "index": "Index",
+            "store": "Store",
+            "members": {
+                "store": "Store",
+                "destroy": "Destroy"
+            },
+            "update": "Update",
+            "destroy": "Destroy"
+        },
         "settings": {
             "update": "Mettre à jour",
             "notifications": "Notifications",
@@ -1111,34 +1108,31 @@
         "secret_key_hint": "Clé secrète côté serveur — gardez-la confidentielle",
         "stripe_webhook_hint": "Secret de signature du Webhook (whsec_…) issu du tableau de bord Stripe",
         "webhook_hint": "Secret du Webhook utilisé pour vérifier les événements entrants de la passerelle",
-        "clients": "Clients",
+        "clients": {
+            "index": "Index",
+            "users": {
+                "index": "Index",
+                "store": "Store",
+                "update": "Update",
+                "destroy": "Destroy"
+            },
+            "impersonate": "Impersonate",
+            "destroy": "Destroy",
+            "export": "Export",
+            "store": "Store",
+            "update": "Update"
+        },
         "subscriptions": "Subscriptions",
         "payments": "Payments",
         "plans": "Plans",
-        "currencies": {
+        "currencies": "Currencies",
+        "admins": {
             "index": "Index",
-            "update": "Update",
-            "store": "Store"
+            "destroy": "Destroy",
+            "store": "Store",
+            "update": "Update"
         },
-        "admins": "Admins",
-        "settings": {
-            "index": "Index",
-            "general": {
-                "update": "Update"
-            },
-            "logo": {
-                "upload": "Upload",
-                "delete": "Delete"
-            },
-            "favicon": {
-                "upload": "Upload",
-                "delete": "Delete"
-            },
-            "update": "Update",
-            "firebase": {
-                "update": "Update"
-            }
-        },
+        "settings": "Settings",
         "ai": {
             "index": "Index"
         },

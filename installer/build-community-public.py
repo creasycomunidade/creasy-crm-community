@@ -15,7 +15,7 @@ for p in (ROOT/'public').rglob('*'):
     rel = p.relative_to(ROOT).as_posix()
     if rel.startswith('public/storage/') or p.is_symlink() or not p.is_file() or rel == 'public/hot': continue
     entries[rel] = p.read_bytes()
-files = ['artisan','.env.example','.htaccess','.branding','composer.json','composer.lock','package.json','package-lock.json','bootstrap/app.php','bootstrap/providers.php','vite.config.js','tailwind.config.js','postcss.config.js','jsconfig.json','vitest.config.js','phpunit.xml','LICENSE','LICENSING.md','THIRD_PARTY_NOTICES.md','PRIVACIDADE.md','docs/INSTALACAO-SEM-TERMINAL.md','installer/build-env/.gitignore','installer/build-community-public.py']
+files = ['artisan','.env.example','.htaccess','.branding','composer.json','composer.lock','package.json','package-lock.json','bootstrap/app.php','bootstrap/providers.php','vite.config.js','tailwind.config.js','postcss.config.js','jsconfig.json','vitest.config.js','phpunit.xml','LICENSE','LICENSING.md','THIRD_PARTY_NOTICES.md','PRIVACIDADE.md','docs/INSTALACAO-SEM-TERMINAL.md','docs/REMOVER-TELEMETRIA.md','tools/telemetry-server/README.md','tools/telemetry-server/.htaccess','tools/telemetry-server/private/.htaccess','tools/telemetry-server/private/bootstrap.php','tools/telemetry-server/public/.htaccess','tools/telemetry-server/public/index.php','tools/telemetry-server/public/api/installations.php','tools/telemetry-server/public/api/heartbeat.php','installer/build-env/.gitignore','installer/build-community-public.py']
 for name in files: entries[name] = (ROOT/name).read_bytes()
 entries['README.md'] = (ROOT/'docs/README-COMMUNITY.md').read_bytes()
 entries['.gitignore'] = b'''/node_modules/

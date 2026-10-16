@@ -187,13 +187,8 @@
     "client": {
         "profile": {
             "edit": "編集",
-            "2fa": {
-                "enable": "Enable",
-                "disable": "Disable"
-            },
-            "sessions": {
-                "destroy": "Destroy"
-            },
+            "2fa": "2Fa",
+            "sessions": "Sessions",
             "destroy": "Destroy",
             "update": "Update"
         },
@@ -358,10 +353,7 @@
             "index": "一覧",
             "store": "保存",
             "destroy": "削除",
-            "contacts": {
-                "attach": "Attach",
-                "detach": "Detach"
-            }
+            "contacts": "Contacts"
         },
         "whatsapp": {
             "templates": {
@@ -422,7 +414,9 @@
             "templates": "テンプレート",
             "assign": "割り当て",
             "setup": {
-                "destroy": "Destroy"
+                "operations": {
+                    "update": "Update"
+                }
             },
             "webchat": {
                 "index": "Index",
@@ -627,7 +621,17 @@
                 "connect": "接続"
             }
         },
-        "workspaces": "Workspaces",
+        "workspaces": {
+            "switch": "Switch",
+            "index": "Index",
+            "store": "Store",
+            "members": {
+                "store": "Store",
+                "destroy": "Destroy"
+            },
+            "update": "Update",
+            "destroy": "Destroy"
+        },
         "settings": {
             "update": "更新",
             "notifications": "通知",
@@ -1104,34 +1108,31 @@
         "secret_key_hint": "サーバーサイドのシークレットキー — 厳重に管理してください",
         "stripe_webhook_hint": "Stripeダッシュボードで確認できるWebhook署名シークレット（whsec_…）",
         "webhook_hint": "受信したゲートウェイイベントの検証に使用するWebhookシークレット",
-        "clients": "Clients",
+        "clients": {
+            "index": "Index",
+            "users": {
+                "index": "Index",
+                "store": "Store",
+                "update": "Update",
+                "destroy": "Destroy"
+            },
+            "impersonate": "Impersonate",
+            "destroy": "Destroy",
+            "export": "Export",
+            "store": "Store",
+            "update": "Update"
+        },
         "subscriptions": "Subscriptions",
         "payments": "Payments",
         "plans": "Plans",
-        "currencies": {
+        "currencies": "Currencies",
+        "admins": {
             "index": "Index",
-            "update": "Update",
-            "store": "Store"
+            "destroy": "Destroy",
+            "store": "Store",
+            "update": "Update"
         },
-        "admins": "Admins",
-        "settings": {
-            "index": "Index",
-            "general": {
-                "update": "Update"
-            },
-            "logo": {
-                "upload": "Upload",
-                "delete": "Delete"
-            },
-            "favicon": {
-                "upload": "Upload",
-                "delete": "Delete"
-            },
-            "update": "Update",
-            "firebase": {
-                "update": "Update"
-            }
-        },
+        "settings": "Settings",
         "ai": {
             "index": "一覧"
         },

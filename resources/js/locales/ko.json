@@ -187,13 +187,8 @@
     "client": {
         "profile": {
             "edit": "편집",
-            "2fa": {
-                "enable": "Enable",
-                "disable": "Disable"
-            },
-            "sessions": {
-                "destroy": "Destroy"
-            },
+            "2fa": "2Fa",
+            "sessions": "Sessions",
             "destroy": "Destroy",
             "update": "Update"
         },
@@ -358,10 +353,7 @@
             "index": "목록",
             "store": "저장",
             "destroy": "삭제",
-            "contacts": {
-                "attach": "Attach",
-                "detach": "Detach"
-            }
+            "contacts": "Contacts"
         },
         "whatsapp": {
             "templates": {
@@ -422,7 +414,9 @@
             "templates": "템플릿",
             "assign": "배정",
             "setup": {
-                "destroy": "Destroy"
+                "operations": {
+                    "update": "Update"
+                }
             },
             "webchat": {
                 "index": "Index",
@@ -627,7 +621,17 @@
                 "connect": "연결"
             }
         },
-        "workspaces": "Workspaces",
+        "workspaces": {
+            "switch": "Switch",
+            "index": "Index",
+            "store": "Store",
+            "members": {
+                "store": "Store",
+                "destroy": "Destroy"
+            },
+            "update": "Update",
+            "destroy": "Destroy"
+        },
         "settings": {
             "update": "업데이트",
             "notifications": "알림",
@@ -1104,34 +1108,31 @@
         "secret_key_hint": "서버 측 시크릿 키 — 비공개로 유지하세요",
         "stripe_webhook_hint": "Stripe 대시보드의 Webhook 서명 시크릿 (whsec_…)",
         "webhook_hint": "수신 게이트웨이 이벤트를 검증하는 데 사용되는 Webhook 시크릿",
-        "clients": "Clients",
+        "clients": {
+            "index": "Index",
+            "users": {
+                "index": "Index",
+                "store": "Store",
+                "update": "Update",
+                "destroy": "Destroy"
+            },
+            "impersonate": "Impersonate",
+            "destroy": "Destroy",
+            "export": "Export",
+            "store": "Store",
+            "update": "Update"
+        },
         "subscriptions": "Subscriptions",
         "payments": "Payments",
         "plans": "Plans",
-        "currencies": {
+        "currencies": "Currencies",
+        "admins": {
             "index": "Index",
-            "update": "Update",
-            "store": "Store"
+            "destroy": "Destroy",
+            "store": "Store",
+            "update": "Update"
         },
-        "admins": "Admins",
-        "settings": {
-            "index": "Index",
-            "general": {
-                "update": "Update"
-            },
-            "logo": {
-                "upload": "Upload",
-                "delete": "Delete"
-            },
-            "favicon": {
-                "upload": "Upload",
-                "delete": "Delete"
-            },
-            "update": "Update",
-            "firebase": {
-                "update": "Update"
-            }
-        },
+        "settings": "Settings",
         "ai": {
             "index": "목록"
         },

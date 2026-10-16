@@ -23,3 +23,5 @@ Configure seus próprios canais, SMTP e provedores. Leia `PRIVACIDADE.md`: esta 
 Filas, lembretes e mensagens programadas precisam de tarefas periódicas. A instalação não exige terminal, mas esses recursos exigem que o painel da hospedagem execute a cada minuto `php /CAMINHO/DO/PROJETO/artisan schedule:run` como tarefa cron. Ajuste o caminho do PHP conforme o provedor. Se a hospedagem não permite cron ou processos longos, parte das automações/IA não funcionará continuamente; use uma hospedagem compatível.
 
 Nunca publique `.env`, `storage` com dados, chaves geradas ou backups. Para atualizar uma instalação existente, preserve `.env` e os arquivos enviados; este pacote inicial não é um mecanismo automático de atualização.
+
+O status de telemetria usa sinais técnicos a cada 5 minutos, sem reenviar nome/e-mail. Configure o cron `php /CAMINHO/DO/PROJETO/artisan schedule:run` a cada minuto para manter os sinais mesmo sem visitas. O painel considera Online até 15 minutos do último sinal e Offline depois; isso não comprova disponibilidade completa do site. Consulte `PRIVACIDADE.md` e [como remover a telemetria](REMOVER-TELEMETRIA.md).

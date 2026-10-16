@@ -187,8 +187,13 @@
     "client": {
         "profile": {
             "edit": "Modifica",
-            "2fa": "2Fa",
-            "sessions": "Sessions",
+            "2fa": {
+                "enable": "Enable",
+                "disable": "Disable"
+            },
+            "sessions": {
+                "destroy": "Destroy"
+            },
             "destroy": "Destroy",
             "update": "Update"
         },
@@ -353,7 +358,10 @@
             "index": "Elenco",
             "store": "Salva",
             "destroy": "Elimina",
-            "contacts": "Contacts"
+            "contacts": {
+                "attach": "Attach",
+                "detach": "Detach"
+            }
         },
         "whatsapp": {
             "templates": {
@@ -414,9 +422,7 @@
             "templates": "Modelli",
             "assign": "Assegna",
             "setup": {
-                "operations": {
-                    "update": "Update"
-                }
+                "destroy": "Destroy"
             },
             "webchat": {
                 "index": "Index",
@@ -621,17 +627,7 @@
                 "connect": "Connetti"
             }
         },
-        "workspaces": {
-            "switch": "Switch",
-            "index": "Index",
-            "store": "Store",
-            "members": {
-                "store": "Store",
-                "destroy": "Destroy"
-            },
-            "update": "Update",
-            "destroy": "Destroy"
-        },
+        "workspaces": "Workspaces",
         "settings": {
             "update": "Aggiorna",
             "notifications": "Notifiche",
@@ -1108,31 +1104,34 @@
         "secret_key_hint": "Chiave segreta lato server — mantienila privata",
         "stripe_webhook_hint": "Segreto di firma del webhook (whsec_…) dalla dashboard Stripe",
         "webhook_hint": "Segreto webhook usato per verificare gli eventi in arrivo dal gateway",
-        "clients": {
-            "index": "Index",
-            "users": {
-                "index": "Index",
-                "store": "Store",
-                "update": "Update",
-                "destroy": "Destroy"
-            },
-            "impersonate": "Impersonate",
-            "destroy": "Destroy",
-            "export": "Export",
-            "store": "Store",
-            "update": "Update"
-        },
+        "clients": "Clients",
         "subscriptions": "Subscriptions",
         "payments": "Payments",
         "plans": "Plans",
-        "currencies": "Currencies",
-        "admins": {
+        "currencies": {
             "index": "Index",
-            "destroy": "Destroy",
-            "store": "Store",
-            "update": "Update"
+            "update": "Update",
+            "store": "Store"
         },
-        "settings": "Settings",
+        "admins": "Admins",
+        "settings": {
+            "index": "Index",
+            "general": {
+                "update": "Update"
+            },
+            "logo": {
+                "upload": "Upload",
+                "delete": "Delete"
+            },
+            "favicon": {
+                "upload": "Upload",
+                "delete": "Delete"
+            },
+            "update": "Update",
+            "firebase": {
+                "update": "Update"
+            }
+        },
         "ai": {
             "index": "Elenco"
         },

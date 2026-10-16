@@ -187,8 +187,13 @@
     "client": {
         "profile": {
             "edit": "Edit",
-            "2fa": "2Fa",
-            "sessions": "Sessions",
+            "2fa": {
+                "enable": "Enable",
+                "disable": "Disable"
+            },
+            "sessions": {
+                "destroy": "Destroy"
+            },
             "destroy": "Destroy",
             "update": "Update"
         },
@@ -353,7 +358,10 @@
             "index": "Indeks",
             "store": "Simpan",
             "destroy": "Hapus",
-            "contacts": "Contacts"
+            "contacts": {
+                "attach": "Attach",
+                "detach": "Detach"
+            }
         },
         "whatsapp": {
             "templates": {
@@ -414,9 +422,7 @@
             "templates": "Template",
             "assign": "Tugaskan",
             "setup": {
-                "operations": {
-                    "update": "Update"
-                }
+                "destroy": "Destroy"
             },
             "webchat": {
                 "index": "Index",
@@ -621,17 +627,7 @@
                 "connect": "Hubungkan"
             }
         },
-        "workspaces": {
-            "switch": "Switch",
-            "index": "Index",
-            "store": "Store",
-            "members": {
-                "store": "Store",
-                "destroy": "Destroy"
-            },
-            "update": "Update",
-            "destroy": "Destroy"
-        },
+        "workspaces": "Workspaces",
         "settings": {
             "update": "Perbarui",
             "notifications": "Notifikasi",
@@ -1108,31 +1104,34 @@
         "secret_key_hint": "Secret key sisi server — jaga kerahasiaannya",
         "stripe_webhook_hint": "Secret penandatanganan webhook (whsec_…) dari dasbor Stripe",
         "webhook_hint": "Secret webhook yang digunakan untuk memverifikasi event gateway masuk",
-        "clients": {
-            "index": "Index",
-            "users": {
-                "index": "Index",
-                "store": "Store",
-                "update": "Update",
-                "destroy": "Destroy"
-            },
-            "impersonate": "Impersonate",
-            "destroy": "Destroy",
-            "export": "Export",
-            "store": "Store",
-            "update": "Update"
-        },
+        "clients": "Clients",
         "subscriptions": "Subscriptions",
         "payments": "Payments",
         "plans": "Plans",
-        "currencies": "Currencies",
-        "admins": {
+        "currencies": {
             "index": "Index",
-            "destroy": "Destroy",
-            "store": "Store",
-            "update": "Update"
+            "update": "Update",
+            "store": "Store"
         },
-        "settings": "Settings",
+        "admins": "Admins",
+        "settings": {
+            "index": "Index",
+            "general": {
+                "update": "Update"
+            },
+            "logo": {
+                "upload": "Upload",
+                "delete": "Delete"
+            },
+            "favicon": {
+                "upload": "Upload",
+                "delete": "Delete"
+            },
+            "update": "Update",
+            "firebase": {
+                "update": "Update"
+            }
+        },
         "ai": {
             "index": "Indeks"
         },

@@ -181,13 +181,8 @@
     "client": {
         "profile": {
             "edit": "সম্পাদনা",
-            "2fa": {
-                "enable": "Enable",
-                "disable": "Disable"
-            },
-            "sessions": {
-                "destroy": "Destroy"
-            },
+            "2fa": "2Fa",
+            "sessions": "Sessions",
             "destroy": "Destroy",
             "update": "Update"
         },
@@ -352,10 +347,7 @@
             "index": "তালিকা",
             "store": "সংরক্ষণ",
             "destroy": "মুছুন",
-            "contacts": {
-                "attach": "Attach",
-                "detach": "Detach"
-            }
+            "contacts": "Contacts"
         },
         "whatsapp": {
             "templates": {
@@ -415,12 +407,7 @@
             "start": "শুরু করুন",
             "templates": "টেমপ্লেট",
             "assign": "বরাদ্দ করুন",
-            "setup": {
-                "operations": {
-                    "update": "Update"
-                },
-                "destroy": "Destroy"
-            },
+            "setup": "Setup",
             "webchat": {
                 "index": "Index",
                 "update": "Update",
@@ -600,7 +587,17 @@
                 "connect": "সংযোগ করুন"
             }
         },
-        "workspaces": "Workspaces",
+        "workspaces": {
+            "switch": "Switch",
+            "index": "Index",
+            "store": "Store",
+            "members": {
+                "store": "Store",
+                "destroy": "Destroy"
+            },
+            "update": "Update",
+            "destroy": "Destroy"
+        },
         "settings": {
             "update": "আপডেট",
             "notifications": "নোটিফিকেশন",
@@ -1069,34 +1066,31 @@
         "secret_key_hint": "সার্ভার-সাইড সিক্রেট কী — এটি গোপন রাখুন",
         "stripe_webhook_hint": "Stripe ড্যাশবোর্ড থেকে Webhook সাইনিং সিক্রেট (whsec_…)",
         "webhook_hint": "ইনকামিং গেটওয়ে ইভেন্ট যাচাই করতে ব্যবহৃত Webhook সিক্রেট",
-        "clients": "Clients",
+        "clients": {
+            "index": "Index",
+            "users": {
+                "index": "Index",
+                "store": "Store",
+                "update": "Update",
+                "destroy": "Destroy"
+            },
+            "impersonate": "Impersonate",
+            "destroy": "Destroy",
+            "export": "Export",
+            "store": "Store",
+            "update": "Update"
+        },
         "subscriptions": "Subscriptions",
         "payments": "Payments",
         "plans": "Plans",
-        "currencies": {
+        "currencies": "Currencies",
+        "admins": {
             "index": "Index",
-            "update": "Update",
-            "store": "Store"
+            "destroy": "Destroy",
+            "store": "Store",
+            "update": "Update"
         },
-        "admins": "Admins",
-        "settings": {
-            "index": "Index",
-            "general": {
-                "update": "Update"
-            },
-            "logo": {
-                "upload": "Upload",
-                "delete": "Delete"
-            },
-            "favicon": {
-                "upload": "Upload",
-                "delete": "Delete"
-            },
-            "update": "Update",
-            "firebase": {
-                "update": "Update"
-            }
-        },
+        "settings": "Settings",
         "ai": {
             "index": "ইনডেক্স"
         },

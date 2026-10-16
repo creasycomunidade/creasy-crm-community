@@ -32,7 +32,16 @@ class CommunityRegistration
         if (!flock($lock, LOCK_EX | LOCK_NB)) { fclose($lock); return; }
         try {
             $state = json_decode(file_get_contents($path), true, flags: JSON_THROW_ON_ERROR);
-            if (empty($state['pending']) || ($state['next_attempt'] ?? 0) > time()) return;
+            if (($state['next_attempt'] ?? 0) > time()) return;
+            if (empty($state['pending'])) {
+                if (empty($state['heartbeat_credentials'])) return; // Legacy receipts have no recoverable secret.
+                $state['next_attempt'] = time() + 300;
+                $this->write($path, $state);
+                $credentials = json_decode(Crypt::decryptString($state['heartbeat_credentials']), true, flags: JSON_THROW_ON_ERROR);
+                Http::acceptJson()->connectTimeout(2)->timeout(4)->withOptions(['allow_redirects' => false])
+                    ->post(config('community.heartbeat_url'), $credentials);
+                return;
+            }
             // Failed deliveries never block use of the CRM or flood the collector.
             $state['next_attempt'] = time() + 3600;
             $this->write($path, $state);
@@ -40,8 +49,8 @@ class CommunityRegistration
             $response = Http::acceptJson()->connectTimeout(2)->timeout(4)
                 ->withOptions(['allow_redirects' => false])->post(config('community.registration_url'), $payload);
             if ($response->successful() && $response->json('ok') === true) {
-                // Keep only the receipt locally; discard duplicated personal data.
-                $this->write($path, ['installation_id' => $payload['installation_id'], 'registered_at' => gmdate(DATE_ATOM)]);
+                // Retain encrypted technical credentials; discard duplicated personal data.
+                $this->write($path, ['installation_id' => $payload['installation_id'], 'registered_at' => gmdate(DATE_ATOM), 'next_attempt' => time() + 300, 'heartbeat_credentials' => Crypt::encryptString(json_encode(['installation_id' => $payload['installation_id'], 'installation_secret' => $payload['installation_secret']], JSON_THROW_ON_ERROR))]);
             }
         } catch (\Throwable) {
             // Never log the payload or personal details. A later visit retries.
